@@ -1,42 +1,200 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+.clock-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
   padding: 2rem;
+  box-sizing: border-box;
+}
+
+.clock-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 4rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clock-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+}
+
+.time-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  font-size: 5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.time-segment {
+  min-width: 2ch;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.time-separator {
+  animation: blink 1s ease-in-out infinite;
+  opacity: 1;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
   }
-  to {
-    transform: rotate(360deg);
+  50%, 100% {
+    opacity: 0.3;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+.time-period {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.date-display {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.format-toggle {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.format-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.format-toggle:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .clock-card {
+    padding: 2rem 2.5rem;
+    gap: 1.5rem;
+  }
+
+  .time-display {
+    font-size: 3.5rem;
+    gap: 0.2rem;
+  }
+
+  .time-period {
+    font-size: 1.5rem;
+    margin-left: 0.3rem;
+  }
+
+  .date-display {
+    font-size: 1.2rem;
+  }
+
+  .format-toggle {
+    font-size: 0.9rem;
+    padding: 0.65rem 1.25rem;
   }
 }
 
-.card {
-  padding: 2em;
+@media (max-width: 480px) {
+  .clock-container {
+    padding: 1rem;
+  }
+
+  .clock-card {
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+  }
+
+  .time-display {
+    font-size: 2.5rem;
+  }
+
+  .time-period {
+    font-size: 1.2rem;
+  }
+
+  .date-display {
+    font-size: 1rem;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+@media (prefers-color-scheme: light) {
+  .clock-card {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .clock-card:hover {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+  }
+
+  .time-display {
+    color: rgba(0, 0, 0, 0.9);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .time-period {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .date-display {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .format-toggle {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .format-toggle:hover {
+    background: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .time-separator {
+    animation: none;
+    opacity: 1;
+  }
+
+  .clock-card,
+  .format-toggle {
+    transition: none;
+  }
+
+  .clock-card:hover {
+    transform: none;
+  }
 }
